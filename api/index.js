@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const config = require("./config");
 
 const blogRoute = require("../route/blog");
 const authRoute = require("../route/auth");
@@ -23,18 +24,11 @@ mongoose
 
 //middleware
 app.use(express.json());
-app.use(
-  cors({
-    origin: "*",
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  })
-);
+app.use(cors());
 app.use(morgan("dev"));
 //route
 app.use("/api", blogRoute);
 app.use("/api", authRoute);
-
-const port = process.env.PORT || 8800;
 
 module.exports = app;
 
