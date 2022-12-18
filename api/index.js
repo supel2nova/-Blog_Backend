@@ -3,7 +3,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const config = require("./config");
+const config = require("../config");
 
 const blogRoute = require("../route/blog");
 const authRoute = require("../route/auth");
@@ -12,7 +12,7 @@ const app = express();
 
 if (config.isVercel) {
   app.use(async (req, res, next) => {
-    await mongoose.connect(config.mongoUri,config.mongoOptions);
+    await mongoose.connect(config.mongoUri);
     return next();
   });
 }
