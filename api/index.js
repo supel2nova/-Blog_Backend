@@ -12,7 +12,7 @@ const app = express();
 
 if (config.isVercel) {
   app.use(async (req, res, next) => {
-    await mongoose.connect(config.mongoUri);
+    await mongoose.connect(config.mongoUri,config.mongoOptions);
     return next();
   });
 }
